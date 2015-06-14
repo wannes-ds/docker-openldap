@@ -1,0 +1,13 @@
+dn: cn=config
+changetype: modify
+
+# usually cn=admin,cn=config is already set by a fresh slapd install
+#dn: olcDatabase={0}config,cn=config
+#changetype: modify
+#add: olcRootDN
+#olcRootDN: cn=admin,cn=config
+
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+add: olcRootPW
+olcRootPW: {MD5}md5hash

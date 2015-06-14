@@ -1,15 +1,15 @@
-FROM osixia/baseimage:0.10.4
-MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
+FROM debian:latest 
+MAINTAINER Wannes<wannes@neutrinet.be>
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+#CMD ["/sbin/my_init"]
 
 # Add openldap user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r openldap && useradd -r -g openldap openldap
 
 # Install OpenLDAP and ldap-utils (and ssl-kit from baseimage), remove default ldap db
 RUN apt-get -y update && /sbin/enable-service ssl-kit \
-	&& LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends slapd ldap-utils \
+	&& LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends slapd ldap-utils gsasl coreutils \
 	&& rm -rf /var/lib/ldap
 
 # Add OpenLDAP assets

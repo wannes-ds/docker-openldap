@@ -122,6 +122,9 @@ EOF
 
   done
 
+  HASH="$(echo -n "$LDAP_ADMIN_PASSWORD" | md5sum  | awk '{print $1}')"
+  sed -i "s|md5hash|$HASH|g" /osixia/slapd/config/remote-config.ldif
+ 
   # OpenLDAP config 
   for f in $(find /osixia/slapd/config -name \*.ldif -type f); do
     echo "Processing file ${f}"

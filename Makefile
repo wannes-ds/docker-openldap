@@ -1,5 +1,5 @@
-NAME = osixia/openldap
-VERSION = 0.10.1
+NAME = neutrinet/openldap
+VERSION = latest
 
 .PHONY: all build test tag_latest release
 
